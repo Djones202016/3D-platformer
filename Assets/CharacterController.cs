@@ -39,10 +39,14 @@ public class CharacterController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         cam = GameObject.Find("Main Camera");
         myRigidbody = GetComponent<Rigidbody>();
+    {
+    Cursor.lockState = CursorLockMode.Locked;
+    }
 }
 
     void Update()
     {
+        camRotation = Mathf.Clamp(camRotation, -40.0f, 40.0f);
         
             if (Input.GetKey(KeyCode.LeftShift) && sprintTimer > 0.0f)
         { 
@@ -91,6 +95,7 @@ public class CharacterController : MonoBehaviour
                 myRigidbody.AddForce(transform.up * jumpForce);
             }
         }
+
     
 }
  
