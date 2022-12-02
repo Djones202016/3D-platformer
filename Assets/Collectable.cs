@@ -8,14 +8,12 @@ public class Collectable : MonoBehaviour
     public AudioClip collect;
     public AudioSource sfxPlayer;
 
-    public static event Action OnCollected;
+    //public static event Action OnCollected;
     public static int total;
-
-    void Awake() => total++;
 
     void Update()
     {
-        // transform.localRotation = Quaternion.Euler(90f, Time.time * 100f, 0);
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -23,7 +21,6 @@ public class Collectable : MonoBehaviour
         if (other.CompareTag("Player"))
         {   
             sfxPlayer.PlayOneShot(collect);
-            OnCollected?.Invoke();
             Destroy(gameObject);
             
             
