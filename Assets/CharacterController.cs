@@ -9,6 +9,9 @@ public class CharacterController : MonoBehaviour
     public float sprintSpeed = 20.0f;
 
 
+public A
+
+
     float rotation = 0.0f;
     float camRotation = 0.0f;
     GameObject cam;
