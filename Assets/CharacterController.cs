@@ -9,7 +9,7 @@ public class CharacterController : MonoBehaviour
     public float sprintSpeed = 20.0f;
 
 
-public A
+
 
 
     float rotation = 0.0f;
