@@ -31,13 +31,11 @@ public class CharacterController : MonoBehaviour
     public float maxSprint = 5.0f;
     float sprintTimer;
 
-
-
-
+Animator myAnim;
 
     void Start()
     {
-
+        myAnim = GetComponentInChildren<Animator>();
         sprintTimer = maxSprint;
         Cursor.lockState = CursorLockMode.Locked;
         cam = GameObject.Find("Main Camera");
@@ -48,6 +46,7 @@ public class CharacterController : MonoBehaviour
 }
 
     void Update()
+
     {
         camRotation = Mathf.Clamp(camRotation, -40.0f, 40.0f);
         
@@ -64,6 +63,7 @@ public class CharacterController : MonoBehaviour
             {
                 sprintTimer = sprintTimer + Time.deltaTime;
             }
+         
         }
         sprintTimer = Mathf.Clamp(sprintTimer, 0.0f, maxSprint);
 
@@ -71,8 +71,9 @@ public class CharacterController : MonoBehaviour
 
 
         isOnGround = Physics.CheckSphere(groundChecker.transform.position, 0.1f, groundLayer);
+        myAnim.SetBool("isOnGround", isOnGround);
 
-            Vector3 newVelocity = transform.forward * Input.GetAxis("Vertical") * maxSpeed;
+        Vector3 newVelocity = transform.forward * Input.GetAxis("Vertical") * maxSpeed;
             myRigidbody.velocity = new Vector3(newVelocity.x, myRigidbody.velocity.y, newVelocity.z);
 
 
@@ -95,6 +96,7 @@ public class CharacterController : MonoBehaviour
         }
         if (isOnGround == true && Input.GetKeyDown(KeyCode.Space))
             {
+                myAnim.SetTrigger("jumped");
                 myRigidbody.AddForce(transform.up * jumpForce);
             }
         }
